@@ -6,5 +6,13 @@ This repository contains my solutions to the [Advent of Code 2025](https://adven
 
 ```bash
 bun install
-bun start
+bun start 01 # for day 1
 ```
+
+## How to run tests ?
+
+```bash
+bun run test 01 # for day 1
+```
+
+Enjoy ! 🎄

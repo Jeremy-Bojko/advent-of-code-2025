@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon src/day01/main.ts"
+    "start": "bun ./utils/run-day.ts",
+    "test": "bun ./utils/test-day.ts"
   },
   "repository": {
     "type": "git",
@@ -13,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jeremy-Bojko/advent-of-code-2024/issues"
+    "url": "https://github.com/Jeremy-Bojko/advent-of-code-2025/issues"
   },
-  "homepage": "https://github.com/Jeremy-Bojko/advent-of-code-2024#readme",
+  "homepage": "https://github.com/Jeremy-Bojko/advent-of-code-2025#readme",
   "devDependencies": {
     "@types/jest": "^29.5.10",
     "@types/lodash": "^4.14.191",
