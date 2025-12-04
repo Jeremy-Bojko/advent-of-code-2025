@@ -5,7 +5,7 @@ const testData = `${__dirname}/testData.txt`;
 
 const param = {
   isTest: false,
-  part: 1,
+  part: 2,
 };
 const data = param.isTest ? testData : inputData;
 
@@ -21,7 +21,10 @@ if (param.part === 1) {
         isInvalidId(i) && invalidId.push(i);
       }
     }
-    console.log(invalidId.reduce((a, b) => a + b));
+    console.log(
+      invalidId.reduce((a, b) => a + b),
+      0
+    );
   });
 }
 
@@ -37,8 +40,24 @@ export const isInvalidId = (id: number) => {
  */
 if (param.part == 2) {
   utilities.fetchAndTest(data).then((data: string) => {
-    const solution = utilities.parseListToTab(data).map((x) => x);
-
-    console.log(solution);
+    const listRangeId = utilities.parseListToTab(data).flatMap((x) => x.split(",").map((x) => x.split("-").map((x) => +x)));
+    const invalidId = [];
+    for (const rangeId of listRangeId) {
+      for (let i = rangeId[0]; i <= rangeId[1]; i++) {
+        (isInvalidId(i) || isComplexInvalidId(i)) && invalidId.push(i);
+      }
+    }
+    console.log(invalidId);
+    console.log(invalidId.reduce((a, b) => a + b));
   });
 }
+
+export const isComplexInvalidId = (id: number) => {
+  const stringedId = String(id);
+  const splittedId = stringedId.split("");
+  // All the digit are the same
+  if (splittedId.length > 1 && new Set(splittedId).size == 1) return true;
+  const fractionnedId = stringedId.split(splittedId[0]);
+  fractionnedId.shift();
+  return fractionnedId.length > 1 && new Set(fractionnedId).size === 1;
+};
