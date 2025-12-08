@@ -1,6 +1,6 @@
-import { findTwoHighestNumbers } from "./main";
+import { findTwoHighestNumbers, findHighestDigitsNumbers } from "./main";
 
-describe("Day 3", () => {
+describe.skip("Day 3 - part 1", () => {
   it("finds the 2 highest numbers", () => {
     expect(findTwoHighestNumbers("987654321111111")).toBe(98);
   });
@@ -33,5 +33,19 @@ describe("Day 3", () => {
   });
   it("finds the 2 highest numbers", () => {
     expect(findTwoHighestNumbers("3156789")).toBe(89);
+  });
+});
+describe("Day 3 - part 2", () => {
+  it("finds the 12 digits to form highest number", () => {
+    expect(findHighestDigitsNumbers("987654321111111")).toBe(987654321111);
+  });
+  it("finds the 12 digits to form highest number", () => {
+    expect(findHighestDigitsNumbers("818181911112111")).toBe(888911112111);
+  });
+  it("finds the 12 digits to form highest number", () => {
+    expect(findHighestDigitsNumbers("234234234234278")).toBe(434234234278);
+  });
+  it("finds the 12 digits to form highest number", () => {
+    expect(findHighestDigitsNumbers("811111111111119")).toBe(811111111119);
   });
 });
