@@ -48,4 +48,7 @@ describe("Day 3 - part 2", () => {
   it("finds the 12 digits to form highest number", () => {
     expect(findHighestDigitsNumbers("811111111111119")).toBe(811111111119);
   });
+  it("finds the 12 digits to form highest number", () => {
+    expect(findHighestDigitsNumbers("2221222621311222213132242151213242132162234231144212112222231222222222122221122241223232322424322112")).toBe(664444443222);
+  });
 });

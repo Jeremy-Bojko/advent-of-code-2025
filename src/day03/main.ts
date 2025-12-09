@@ -40,18 +40,7 @@ export const findTwoHighestNumbers = (batteriesRack: string): number => {
 /**
  * Part 2
  */
-if (param.part == 2) {
-  utilities.fetchAndTest(data).then((data: string) => {
-    const solution = utilities.parseListToTab(data).map((x) => x);
-
-    console.log(solution);
-  });
-}
-
-/**
- * Part 2
- */
-if (param.part == 2) {
+if (false && param.part == 2) {
   utilities.fetchAndTest(data).then((data: string) => {
     const batteriesRack = utilities.parseListToTab(data).map((x) => findHighestDigitsNumbers(x));
 
@@ -59,7 +48,7 @@ if (param.part == 2) {
     batteriesRack.forEach((x) => {
       result = result.add(new Big(x));
     });
-    // console.log(batteriesRack.reduce((a, b) => a + BigInt(b), BigInt(0)).toString());
+    console.log(batteriesRack);
     console.log(result.toString());
   });
 }
@@ -69,18 +58,24 @@ export const findHighestDigitsNumbers = (batteriesRack: string): number => {
   const structuredRack = [...structuredRackRaw.slice(0, structuredRackRaw.length - 12 + 1)];
   const highestNumber = structuredRack.sort((a, b) => b - a)[0];
   const indexHighestNumber = structuredRackRaw.indexOf(highestNumber);
-  const highestDigit = [highestNumber, structuredRackRaw[indexHighestNumber + 1]];
+  let highestDigit = [highestNumber, structuredRackRaw[indexHighestNumber + 1]];
   for (let i = indexHighestNumber + 2; i < structuredRackRaw.length; i++) {
     const digit = structuredRackRaw[i];
-    if (i < structuredRackRaw.length - 12 + highestDigit.length) {
-      if (digit >= highestDigit[highestDigit.length - 1]) {
-        highestDigit[highestDigit.length - 1] = digit;
+
+    if (i < structuredRackRaw.length - 12) {
+      // The element to change can be the n-12 element
+      if (digit >= highestDigit[1]) {
+        highestDigit[1] = digit;
+        highestDigit = [...highestDigit.slice(0, 2)];
+        console.log(highestDigit);
       } else {
         highestDigit.push(digit);
       }
-    } else {
+    } else if (highestDigit.length < 12) {
       highestDigit.push(digit);
     }
   }
   return +highestDigit.join("");
 };
+
+findHighestDigitsNumbers("2221222621311222213132242151213242132162234231144212112222231222222222122221122241223232322424322112");
