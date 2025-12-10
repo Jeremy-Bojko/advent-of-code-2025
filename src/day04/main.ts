@@ -5,7 +5,7 @@ const testData = `${__dirname}/testData.txt`;
 
 const param = {
   isTest: false,
-  part: 1,
+  part: 2,
 };
 const data = param.isTest ? testData : inputData;
 
@@ -59,8 +59,24 @@ export const countAdjacentRollerPaper = (map: string[][], cell: { y: number; x: 
  */
 if (param.part == 2) {
   utilities.fetchAndTest(data).then((data: string) => {
-    const solution = utilities.parseListToTab(data).map((x) => x);
+    const paperMap = utilities.parseListToTab(data).map((x) => x.split(""));
+    let rollsRemoved = 0;
+    let countRoll = 0;
+    let isAmountRollTheSame = false;
+    do {
+      let lastCountRoll = countRoll;
+      for (let i = 0; i < paperMap.length; i++) {
+        for (let j = 0; j < paperMap[i].length; j++) {
+          if (countAdjacentRollerPaper(paperMap, { y: i, x: j }) < 4) {
+            countRoll++;
+            rollsRemoved++;
+            paperMap[i][j] = ".";
+          }
+        }
+      }
+      isAmountRollTheSame = lastCountRoll == countRoll;
+    } while (!isAmountRollTheSame);
 
-    console.log(solution);
+    console.log(countRoll);
   });
 }
